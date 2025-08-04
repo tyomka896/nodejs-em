@@ -1,4 +1,6 @@
-const obj = {}
+const obj = {};
 let isEmppty = false;
-...
-console.log(isEmpty)
+
+isEmppty = Object.entries(obj).length == 0;
+
+console.log(isEmppty);
