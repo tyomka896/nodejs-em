@@ -1,12 +1,12 @@
-import Express from "express";
+import Express, { json } from "express";
 
-const APP_PORT = 3000;
+import { APP_PORT } from "./config.js";
+import testRouter from "./router.js";
 
 const app = Express();
 
-app.get("/test", (req, res) => {
-    res.send("OK");
-});
+app.use(json());
+app.use("/test", testRouter);
 
 app.listen(APP_PORT, () => {
     console.log(`Server started on: http://localhost:${APP_PORT}`);
