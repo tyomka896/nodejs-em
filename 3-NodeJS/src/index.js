@@ -1,7 +1,8 @@
 import Express, { json } from "express";
 
-import testRouter from "./router.js";
 import { SERVER_PORT } from "./config.js";
+import testRouter from "./router.js";
+import { connection } from "./libs/database.js";
 
 const app = Express();
 
