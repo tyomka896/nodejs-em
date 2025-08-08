@@ -1,1 +1,3 @@
-export const APP_PORT = 3000;
+import Config from "config";
+
+export const SERVER_PORT = Config.get("SERVER.PORT");
