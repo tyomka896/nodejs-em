@@ -9,13 +9,13 @@ import { CreateUsers } from "../services/CreateUsers.js";
  */
 export async function CreateUsersController(req, res) {
     if (!CreateUsersValidate(req.body)) {
-        const errors = CreateUsersValidate.errors
-            .map(({ message, dataPath }) => ({
-                field: dataPath,
-                message,
-            }));
-
-        return res.status(400).send(errors);
+        return res.status(400).json({
+            error: "Invalid query parameters",
+            messages: CreateUsersValidate.errors
+                .map(({ instancePath, message }) => ({
+                    [instancePath]: message,
+                })),
+        });
     }
 
     const usersData = {
