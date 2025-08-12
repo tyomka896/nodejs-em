@@ -1,4 +1,7 @@
 {
+    "AUTH": {
+        "PASSWORD_KEY": "PASSWORD_KEY"
+    },
     "SERVER": {
         "PORT": 3000
     },
@@ -8,5 +11,9 @@
         "NAME": "postgres",
         "USER": "postgres",
         "PASSWORD": "postgres"
+    },
+    "REDIS": {
+        "ADDRESS": "localhost",
+        "PORT": 6379
     }
 }
