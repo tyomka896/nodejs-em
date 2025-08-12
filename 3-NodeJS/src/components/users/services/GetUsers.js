@@ -1,4 +1,4 @@
-import { connection } from "../../../libs/database.js";
+import { connection } from "#libs/database.js";
 
 export async function GetUsers({ page = 1, limit = 10 }) {
     const offset = (page - 1) * limit;

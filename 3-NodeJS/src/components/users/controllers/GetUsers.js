@@ -1,5 +1,5 @@
-import { GetUsersValidate } from "../dto/GetUsers.js";
-import { GetUsers } from "../services/GetUsers.js";
+import { GetUsersValidate } from "#components/users/dto/GetUsers.js";
+import { GetUsers } from "#components/users/services/GetUsers.js";
 
 /**
  * Example:

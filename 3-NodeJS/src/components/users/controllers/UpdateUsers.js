@@ -1,4 +1,4 @@
-import { UpdateUser } from "../services/UpdateUsers.js";
+import { UpdateUser } from "#components/users/services/UpdateUsers.js";
 
 /**
  * Example:

@@ -1,4 +1,4 @@
-import { connection } from "../../../libs/database.js";
+import { connection } from "#libs/database.js";
 
 export async function UpdateUser({ id, name, surname }) {
     if (!id || !name || !surname) {

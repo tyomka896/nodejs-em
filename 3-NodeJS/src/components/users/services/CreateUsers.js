@@ -1,4 +1,4 @@
-import { connection } from "../../../libs/database.js";
+import { connection } from "#libs/database.js";
 
 export async function CreateUsers(usersData) {
     const { name, surname, password, email } = usersData;
