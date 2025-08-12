@@ -1,6 +1,6 @@
-import { connection } from "../../../libs/database.js";
+import { connection } from "#libs/database.js";
 
-export async function CreateUsers(usersData) {
+export async function CreateUsersService(usersData) {
     const { name, surname, password, email } = usersData;
 
     const hashPassword = password;

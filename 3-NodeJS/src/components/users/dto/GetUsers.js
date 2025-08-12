@@ -1,11 +1,4 @@
-import Ajv from "ajv";
-
-const ajv = new Ajv({
-    allErrors: true,
-    coerceTypes: true,
-});
-
-const schema = {
+export const GetUsersSchema = {
     type: "object",
     required: [],
     additionalProperties: false,
@@ -21,5 +14,3 @@ const schema = {
         },
     },
 };
-
-export const GetUsersValidate = ajv.compile(schema);
