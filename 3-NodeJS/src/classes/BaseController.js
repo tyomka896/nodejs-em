@@ -35,32 +35,31 @@ export class BaseController {
     }
 
     validate(req) {
-        const errorsList = {
-            error: "Invalid parameters",
-            messages: [],
-        };
-
         if (this.bodySchema) {
+            console.log("body");
+
             const validate = this.compileSchema(this.bodySchema);
 
             if (!validate(req.body)) {
-                errorsList.error = "Invalid body parameters";
-                errorsList.messages = validate.errors
-                    .map(this.#buildRequestError);
+                return {
+                    error: "Invalid body parameters",
+                    messages: validate.errors
+                        .map(this.#buildRequestError),
+                };
             }
-        }
-
-        if (this.querySchema) {
+        } else if (this.querySchema) {
             const validate = this.compileSchema(this.querySchema);
 
             if (!validate(req.query)) {
-                errorsList.error = "Invalid query parameters";
-                errorsList.messages = validate.errors
-                    .map(this.#buildRequestError);
+                return {
+                    error: "Invalid query parameters",
+                    messages: validate.errors
+                        .map(this.#buildRequestError),
+                };
             }
         }
 
-        return errorsList;
+        return {};
     }
 
     async run(req, res) {
