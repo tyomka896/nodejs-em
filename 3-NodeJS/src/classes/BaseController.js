@@ -1,8 +1,11 @@
-const Ajv = require("ajv").default;
+import Ajv from "ajv";
 
-const ajv = new Ajv({ allErrors: true });
+const ajv = new Ajv({
+    allErrors: true,
+    coerceTypes: true,
+});
 
-class BaseController {
+export class BaseController {
     constructor() {
         this.controller = this.controller.bind(this);
         this.run = this.run.bind(this);
@@ -22,35 +25,34 @@ class BaseController {
     }
 
     #buildRequestError(error) {
-        const { message, dataPath: field } = error;
+        const { instancePath, message } = error;
 
-        return { field, message };
+        return { [instancePath]: message };
     }
 
     validate(req) {
-        const errorsList = {};
+        const errorsList = {
+            error: "Invalid parameters",
+            messages: [],
+        };
 
         if (this.bodySchema) {
             const validate = ajv.compile(this.bodySchema);
 
-            const isValid = validate(req.body);
-
-            if (!isValid) {
-                const errors = validate.errors.map(this.#buildRequestError);
-
-                errorsList.body = errors;
+            if (!validate(req.body)) {
+                errorsList.error = "Invalid body parameters";
+                errorsList.messages = validate.errors
+                    .map(this.#buildRequestError);
             }
         }
 
         if (this.querySchema) {
             const validate = ajv.compile(this.querySchema);
 
-            const isValid = validate(req.query);
-
-            if (!isValid) {
-                const errors = validate.errors.map(this.#buildRequestError);
-
-                errorsList.query = errors;
+            if (!validate(req.query)) {
+                errorsList.error = "Invalid query parameters";
+                errorsList.messages = validate.errors
+                    .map(this.#buildRequestError);
             }
         }
 

@@ -1,6 +1,6 @@
 import { connection } from "#libs/database.js";
 
-export async function UpdateUser({ id, name, surname }) {
+export async function UpdateUserService({ id, name, surname }) {
     if (!id || !name || !surname) {
         throw new Error("Missing required fields");
     }

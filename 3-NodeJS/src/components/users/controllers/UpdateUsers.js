@@ -1,4 +1,4 @@
-import { UpdateUser } from "#components/users/services/UpdateUsers.js";
+import { UpdateUserService } from "#components/users/services/UpdateUsers.js";
 
 /**
  * Example:
@@ -12,7 +12,7 @@ export async function UpdateUserController(req, res) {
     const { name, surname } = req.body;
 
     try {
-        await UpdateUser({ id, name, surname });
+        await UpdateUserService({ id, name, surname });
 
         res.send("OK");
     } catch (err) {

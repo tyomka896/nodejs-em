@@ -1,5 +1,5 @@
 import { CreateUsersValidate } from "#components/users/dto/CreateUsers.js";
-import { CreateUsers } from "#components/users/services/CreateUsers.js";
+import { CreateUsersService } from "#components/users/services/CreateUsers.js";
 
 /**
  * Example:
@@ -25,7 +25,7 @@ export async function CreateUsersController(req, res) {
         email: req.body.email,
     };
 
-    await CreateUsers(usersData);
+    await CreateUsersService(usersData);
 
     res.send("OK");
 }

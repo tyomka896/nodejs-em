@@ -1,25 +1,37 @@
-import { GetUsersValidate } from "#components/users/dto/GetUsers.js";
-import { GetUsers } from "#components/users/services/GetUsers.js";
+import { BaseController } from "#classes/BaseController.js";
+import { GetUsersSchema } from "#components/users/dto/GetUsers.js";
+import { GetUsersService } from "#components/users/services/GetUsers.js";
 
 /**
  * Example:
- * curl "http://localhost:3000/users?page=2&limit=5"
+ * curl "http://localhost:3000/users?page=1&limit=5"
  */
-export async function GetUsersController(req, res) {
-    if (!GetUsersValidate(req.query)) {
-        return res.status(400).json({
-            error: "Invalid query parameters",
-            messages: GetUsersValidate.errors
-                .map(({ instancePath, message }) => ({
-                    [instancePath]: message,
-                })),
-        });
+class GetUsersController extends BaseController {
+    get querySchema() {
+        return GetUsersSchema;
     }
 
-    const page = parseInt(req.query.page, 10) || 1;
-    const limit = parseInt(req.query.limit, 10) || 50;
+    Getters(user) {
+        return {
+            id: user.id,
+            name: user.name,
+            surname: user.surname,
+            email: user.email,
+        };
+    }
 
-    const result = await GetUsers({ page, limit });
+    async controller(req) {
+        let { page = 1, limit = 50 } = req.query;
 
-    res.json(result);
+        page = parseInt(page);
+        limit = parseInt(limit);
+
+        const result = await GetUsersService({ page, limit });
+
+        result.users = result.users.map(this.Getters);
+
+        return result;
+    }
 }
+
+export default new GetUsersController();
