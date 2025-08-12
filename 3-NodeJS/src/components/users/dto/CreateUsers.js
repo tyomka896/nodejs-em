@@ -1,22 +1,4 @@
-import Ajv from "ajv";
-import ajvFormats from "ajv-formats";
-
-const ajv = new Ajv({ allErrors: true });
-ajvFormats(ajv, ["email"]);
-
-ajv.addFormat("password", {
-    type: "string",
-    validate: (password) => {
-        return typeof password === "string" &&
-            password.length >= 8 &&
-            /[A-Z]/.test(password) &&
-            /[a-z]/.test(password) &&
-            /\d/.test(password) &&
-            /[@$!%*?&]/.test(password);
-    },
-});
-
-const schema = {
+export const CreateUsersSchema = {
     type: "object",
     required: ["name", "surname", "password", "email"],
     additionalProperties: false,
@@ -27,5 +9,3 @@ const schema = {
         password: { type: "string", format: "password" },
     },
 };
-
-export const CreateUsersValidate = ajv.compile(schema);

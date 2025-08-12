@@ -25,9 +25,13 @@ export class BaseController {
     }
 
     #buildRequestError(error) {
-        const { instancePath, message } = error;
+        const { params, instancePath, message } = error;
 
-        return { [instancePath]: message };
+        return { [instancePath || params?.missingProperty]: message };
+    }
+
+    compileSchema(schema) {
+        return ajv.compile(schema);
     }
 
     validate(req) {
@@ -37,7 +41,7 @@ export class BaseController {
         };
 
         if (this.bodySchema) {
-            const validate = ajv.compile(this.bodySchema);
+            const validate = this.compileSchema(this.bodySchema);
 
             if (!validate(req.body)) {
                 errorsList.error = "Invalid body parameters";
@@ -47,7 +51,7 @@ export class BaseController {
         }
 
         if (this.querySchema) {
-            const validate = ajv.compile(this.querySchema);
+            const validate = this.compileSchema(this.querySchema);
 
             if (!validate(req.query)) {
                 errorsList.error = "Invalid query parameters";
