@@ -1,6 +1,7 @@
 {
     "AUTH": {
-        "PASSWORD_KEY": "PASSWORD_KEY"
+        "TOKEN_KEY": "TOKEN_KEY",
+        "REFRESH_KEY": "REFRESH_KEY"
     },
     "SERVER": {
         "PORT": 3000
@@ -13,7 +14,9 @@
         "PASSWORD": "postgres"
     },
     "REDIS": {
-        "ADDRESS": "localhost",
-        "PORT": 6379
+        "HOST": "localhost",
+        "PORT": 6379,
+        "PASSWORD": "PASSWORD",
+        "DB": 0
     }
 }

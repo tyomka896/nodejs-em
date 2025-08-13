@@ -3,6 +3,7 @@ import { connection } from "#libs/database.js";
 export async function CreateUsersService(usersData) {
     const { name, surname, password, email } = usersData;
 
+    // TODO: hash  password
     const hashPassword = password;
 
     await connection.none(

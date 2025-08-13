@@ -6,7 +6,7 @@ import {
     DATABASE_PASSWORD,
     DATABASE_PORT,
     DATABASE_USER,
-} from "../config.js";
+} from "#config";
 
 const pg = pgPromise();
 

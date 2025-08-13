@@ -36,8 +36,6 @@ export class BaseController {
 
     validate(req) {
         if (this.bodySchema) {
-            console.log("body");
-
             const validate = this.compileSchema(this.bodySchema);
 
             if (!validate(req.body)) {
