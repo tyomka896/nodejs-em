@@ -1,6 +1,6 @@
 import Express, { json } from "express";
 
-import { APP_PORT } from "#config";
+import { APP_PORT } from "#config/app.js";
 import { useRouters } from "./routers/index.js";
 
 const app = Express();

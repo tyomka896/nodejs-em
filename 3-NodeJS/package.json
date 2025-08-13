@@ -27,9 +27,9 @@
   "imports": {
     "#classes/*": "./src/classes/*",
     "#components/*": "./src/components/*",
+    "#config/*": "./src/config/*",
     "#helpers/*": "./src/helpers/*",
     "#libs/*": "./src/libs/*",
-    "#middleware/*": "./src/middleware/*",
-    "#config": "./src/config.js"
+    "#middleware/*": "./src/middleware/*"
   }
 }
