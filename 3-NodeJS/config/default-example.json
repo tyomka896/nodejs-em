@@ -1,10 +1,9 @@
 {
-    "AUTH": {
-        "TOKEN_KEY": "TOKEN_KEY",
-        "REFRESH_KEY": "REFRESH_KEY"
-    },
-    "SERVER": {
-        "PORT": 3000
+    "APP": {
+        "PORT": 3000,
+        "KEY": "KEY",
+        "TOKEN_SECRET": "TOKEN_SECRET",
+        "REFRESH_SECRET": "REFRESH_SECRET"
     },
     "DATABASE": {
         "HOST": "localhost",

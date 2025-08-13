@@ -2,18 +2,18 @@ import JWT from "jsonwebtoken";
 
 import { redis } from "#libs/redis.js";
 import { connection } from "#libs/database.js";
-import { AUTH_REFRESH_KEY, AUTH_TOKEN_KEY } from "#config";
+import { APP_REFRESH_SECRET, APP_TOKEN_SECRET } from "#config";
 
 export async function GetTokensService(user) {
     const token = JWT.sign(
         { sub: user.id },
-        AUTH_TOKEN_KEY,
+        APP_TOKEN_SECRET,
         { expiresIn: "2h" },
     );
 
     const refreshToken = JWT.sign(
         { sub: user.id },
-        AUTH_REFRESH_KEY,
+        APP_REFRESH_SECRET,
         { expiresIn: "30d" },
     );
 

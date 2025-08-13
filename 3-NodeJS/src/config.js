@@ -1,11 +1,13 @@
 // TODO: split to multiple files
 import Config from "config";
 
-export const AUTH_TOKEN_KEY = Config.get("AUTH.TOKEN_KEY");
+export const APP_PORT = Config.get("APP.PORT");
 
-export const AUTH_REFRESH_KEY = Config.get("AUTH.REFRESH_KEY");
+export const APP_KEY = Config.get("APP.KEY");
 
-export const SERVER_PORT = Config.get("SERVER.PORT");
+export const APP_TOKEN_SECRET = Config.get("APP.TOKEN_SECRET");
+
+export const APP_REFRESH_SECRET = Config.get("APP.REFRESH_SECRET");
 
 export const DATABASE_HOST = Config.get("DATABASE.HOST");
 

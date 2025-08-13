@@ -1,6 +1,6 @@
 import { redis } from "#libs/redis.js";
 
-import { AUTH_TOKEN_KEY } from "#config";
+import { APP_TOKEN_SECRET } from "#config";
 
 export async function GetSessionService(token) {
     if (!token) {
@@ -28,7 +28,7 @@ export async function GetSessionService(token) {
     let payload;
 
     try {
-        payload = JWT.verify(tokenValue, AUTH_TOKEN_KEY);
+        payload = JWT.verify(tokenValue, APP_TOKEN_SECRET);
     } catch (e) {
         return null;
     }

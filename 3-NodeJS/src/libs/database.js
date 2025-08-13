@@ -19,11 +19,7 @@ export const connection = pg({
 });
 
 connection.connect()
-    .then((connect) => {
-        console.log("Connect to DB success");
-
-        connect.done();
-    })
+    .then((connect) => connect.done())
     .catch((error) => {
         console.error("DataBase connection Error", error);
     });

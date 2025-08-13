@@ -2,13 +2,13 @@ import JWT from "jsonwebtoken";
 
 import { redis } from "#libs/redis.js";
 import { connection } from "#libs/database.js";
-import { AUTH_REFRESH_KEY, AUTH_TOKEN_KEY } from "#config";
+import { APP_REFRESH_SECRET, APP_TOKEN_SECRET } from "#config";
 
 export async function RefreshTokenService(refreshToken) {
     let payload;
 
     try {
-        payload = JWT.verify(refreshToken, AUTH_REFRESH_KEY);
+        payload = JWT.verify(refreshToken, APP_REFRESH_SECRET);
     } catch (e) {
         return null;
     }
@@ -24,13 +24,13 @@ export async function RefreshTokenService(refreshToken) {
 
     const newAccessToken = JWT.sign(
         { sub: user.id },
-        AUTH_TOKEN_KEY,
+        APP_TOKEN_SECRET,
         { expiresIn: "2h" },
     );
 
     const newRefreshToken = JWT.sign(
         { sub: user.id },
-        AUTH_REFRESH_KEY,
+        APP_REFRESH_SECRET,
         { expiresIn: "30d" },
     );
 
