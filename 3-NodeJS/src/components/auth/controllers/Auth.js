@@ -7,20 +7,8 @@ import { GetUsersService } from "#components/auth/services/GetUsers.js";
 import { GetTokensService } from "#components/auth/services/GetTokens.js";
 
 class AuthController extends BaseController {
-    constructor() {
-        super();
-
-        this.ajv = new Ajv({ allErrors: true });
-
-        ajvFormats(this.ajv, ["email"]);
-    }
-
     get bodySchema() {
         return AuthSchema;
-    }
-
-    compileSchema(schema) {
-        return this.ajv.compile(schema);
     }
 
     async controller(req) {

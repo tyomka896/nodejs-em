@@ -1,15 +1,15 @@
-import Ajv from "ajv";
-
-const ajv = new Ajv({
-    allErrors: true,
-    coerceTypes: true,
-});
+import ajv from "#helpers/ajv.js";
 
 export class BaseController {
     constructor() {
+        this.ajv = ajv;
         this.controller = this.controller.bind(this);
         this.run = this.run.bind(this);
         this.validate = this.validate.bind(this);
+    }
+
+    addFormat(name, formatObj) {
+        this.ajv.addFormat(name, formatObj);
     }
 
     get bodySchema() {
@@ -30,13 +30,9 @@ export class BaseController {
         return { [instancePath || params?.missingProperty]: message };
     }
 
-    compileSchema(schema) {
-        return ajv.compile(schema);
-    }
-
     validate(req) {
         if (this.bodySchema) {
-            const validate = this.compileSchema(this.bodySchema);
+            const validate = this.ajv.compile(this.bodySchema);
 
             if (!validate(req.body)) {
                 return {
@@ -46,7 +42,7 @@ export class BaseController {
                 };
             }
         } else if (this.querySchema) {
-            const validate = this.compileSchema(this.querySchema);
+            const validate = this.ajv.compile(this.querySchema);
 
             if (!validate(req.query)) {
                 return {

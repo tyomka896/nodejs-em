@@ -1,6 +1,3 @@
-import Ajv from "ajv";
-import ajvFormats from "ajv-formats";
-
 import { BaseController } from "#classes/BaseController.js";
 import { CreateUsersSchema } from "#components/users/dto/CreateUsers.js";
 import { CreateUsersService } from "#components/users/services/CreateUsers.js";
@@ -15,11 +12,7 @@ class CreateUsersController extends BaseController {
     constructor() {
         super();
 
-        this.ajv = new Ajv({ allErrors: true });
-
-        ajvFormats(this.ajv, ["email"]);
-
-        this.ajv.addFormat("password", {
+        this.addFormat("password", {
             type: "string",
             validate: (password) => {
                 return typeof password === "string" &&
@@ -34,10 +27,6 @@ class CreateUsersController extends BaseController {
 
     get bodySchema() {
         return CreateUsersSchema;
-    }
-
-    compileSchema(schema) {
-        return this.ajv.compile(schema);
     }
 
     async controller(req) {
