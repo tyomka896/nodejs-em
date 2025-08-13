@@ -1,7 +1,6 @@
 export const GetUsersSchema = {
     type: "object",
     required: [],
-    additionalProperties: false,
     properties: {
         page: {
             type: "integer",
