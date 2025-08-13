@@ -1,5 +1,7 @@
-import { redis } from "#libs/redis.js";
+import JWT from "jsonwebtoken";
 
+import { redis } from "#libs/redis.js";
+import { connection } from "#libs/database.js";
 import { APP_TOKEN_SECRET } from "#config";
 
 export async function GetSessionService(token) {
