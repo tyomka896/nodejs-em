@@ -16,7 +16,6 @@ export async function GetSessionService(token) {
     const tokenValue = parts[1];
 
     const cached = await redis.get(`token_${tokenValue}`);
-    console.log(`cached -> ${cached}`);
 
     if (cached) {
         try {
