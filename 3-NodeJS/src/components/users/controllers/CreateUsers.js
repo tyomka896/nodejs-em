@@ -32,7 +32,7 @@ class CreateUsersController extends BaseController {
         });
     }
 
-    get querySchema() {
+    get bodySchema() {
         return CreateUsersSchema;
     }
 

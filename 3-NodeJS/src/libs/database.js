@@ -6,7 +6,7 @@ import {
     DATABASE_PASSWORD,
     DATABASE_PORT,
     DATABASE_USER,
-} from "../config.js";
+} from "#config";
 
 const pg = pgPromise();
 
@@ -19,11 +19,7 @@ export const connection = pg({
 });
 
 connection.connect()
-    .then((connect) => {
-        console.log("Connect to DB success");
-
-        connect.done();
-    })
+    .then((connect) => connect.done())
     .catch((error) => {
         console.error("DataBase connection Error", error);
     });

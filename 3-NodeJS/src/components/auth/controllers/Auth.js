@@ -1,0 +1,41 @@
+import Ajv from "ajv";
+import ajvFormats from "ajv-formats";
+
+import { BaseController } from "#classes/BaseController.js";
+import { AuthSchema } from "#components/auth/dto/Auth.js";
+import { GetUsersService } from "#components/auth/services/GetUsers.js";
+import { GetTokensService } from "#components/auth/services/GetTokens.js";
+
+class AuthController extends BaseController {
+    constructor() {
+        super();
+
+        this.ajv = new Ajv({ allErrors: true });
+
+        ajvFormats(this.ajv, ["email"]);
+    }
+
+    get bodySchema() {
+        return AuthSchema;
+    }
+
+    compileSchema(schema) {
+        return this.ajv.compile(schema);
+    }
+
+    async controller(req) {
+        const { email, password } = req.body;
+
+        const user = await GetUsersService({ email, password });
+
+        if (!user) {
+            return "Password or email is incorrect";
+        }
+
+        const tokens = GetTokensService(user);
+
+        return tokens;
+    }
+}
+
+export default new AuthController();

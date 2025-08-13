@@ -2,9 +2,9 @@ import { UpdateUserService } from "#components/users/services/UpdateUsers.js";
 
 /**
  * Example:
- * curl -X PUT http://localhost:3000/users/1 \
- *      -H "Content-Type: application/json" \
- *      -d '{"name":"Петр","surname":"Петров"}'
+curl -X PUT http://localhost:3000/users/1 \
+     -H "Content-Type: application/json" \
+     -d '{"name":"Петр","surname":"Петров"}'
  */
 export async function UpdateUserController(req, res) {
     const id = req.params.id;
