@@ -1,12 +1,10 @@
-import Ajv from "ajv";
-import ajvFormats from "ajv-formats";
-
-import { BaseController } from "#classes/BaseController.js";
+import { Controller } from "#components/Controller.js";
 import { AuthSchema } from "#components/auth/dto/Auth.js";
 import { GetUsersService } from "#components/auth/services/GetUsers.js";
 import { GetTokensService } from "#components/auth/services/GetTokens.js";
+import { UnauthorizedError } from "#errors/UnauthorizedError.js";
 
-class AuthController extends BaseController {
+class AuthController extends Controller {
     get bodySchema() {
         return AuthSchema;
     }
@@ -17,7 +15,7 @@ class AuthController extends BaseController {
         const user = await GetUsersService({ email, password });
 
         if (!user) {
-            return "Password or email is incorrect";
+            throw new UnauthorizedError("Password or email is incorrect");
         }
 
         const tokens = GetTokensService(user);

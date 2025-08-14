@@ -1,14 +1,11 @@
 import { connection } from "#libs/database.js";
+import { ValidationError } from "#errors/index.js";
 
 export async function UpdateUserService({ id, name, surname }) {
-    if (!id || !name || !surname) {
-        throw new Error("Missing required fields");
-    }
-
-    await connection.none(
+    const { rowCount } = await connection.result(
         "UPDATE users SET name = $1, surname = $2 WHERE id = $3",
         [name, surname, id],
     );
 
-    return true;
+    return rowCount >= 1;
 }

@@ -1,8 +1,9 @@
-import { BaseController } from "#classes/BaseController.js";
+import { Controller } from "#components/Controller.js";
 import { AuthRefreshSchema } from "#components/auth/dto/AuthRefresh.js";
 import { RefreshTokenService } from "#components/auth/services/RefreshToken.js";
+import { UnauthorizedError } from "#errors/UnauthorizedError.js";
 
-class AuthRefreshController extends BaseController {
+class AuthRefreshController extends Controller {
     get bodySchema() {
         return AuthRefreshSchema;
     }
@@ -13,7 +14,7 @@ class AuthRefreshController extends BaseController {
         const tokens = await RefreshTokenService(refreshToken);
 
         if (!tokens) {
-            return "Invalid or expired refresh token";
+            throw new UnauthorizedError("Invalid or expired refresh token");
         }
 
         return tokens;

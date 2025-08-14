@@ -1,9 +1,9 @@
-import testRouter from "#components/basics/router.js";
-import usersRouter from "#components/users/router.js";
-import authRouter from "#components/auth/router.js";
+import authRouter from "./authRouters.js";
+import basicRouters from "./basicRouters.js";
+import usersRouter from "./userRouters.js";
 
 export function useRouters(app) {
-    app.use("/test", testRouter);
+    app.use("/test", basicRouters);
     app.use(authRouter);
     app.use(usersRouter);
 }

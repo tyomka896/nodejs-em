@@ -1,4 +1,5 @@
-import BaseController from "#classes/BaseController.js";
+import { Controller } from "#components/Controller.js";
+import { UpdateUsersSchema } from "#components/users/dto/UpdateUsers.js";
 import { UpdateUserService } from "#components/users/services/UpdateUsers.js";
 
 /**
@@ -7,19 +8,15 @@ curl -X PUT http://localhost:3000/users/1 \
      -H "Content-Type: application/json" \
      -d '{"name":"Петр","surname":"Петров"}'
  */
-class UpdateUserController extends BaseController {
+class UpdateUserController extends Controller {
+    get bodySchema() {
+        return UpdateUsersSchema;
+    }
+
     async controller(req) {
         const id = req.params.id;
 
-        const { name, surname } = req.body;
-
-        try {
-            await UpdateUserService({ id, name, surname });
-
-            res.send("OK");
-        } catch (err) {
-            res.status(400).json({ error: err.message });
-        }
+        return await UpdateUserService({ id, ...req.body });
     }
 }
 

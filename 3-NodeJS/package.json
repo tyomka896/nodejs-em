@@ -29,6 +29,7 @@
     "#classes/*": "./src/classes/*",
     "#components/*": "./src/components/*",
     "#config/*": "./src/config/*",
+    "#errors/*": "./src/errors/*",
     "#helpers/*": "./src/helpers/*",
     "#libs/*": "./src/libs/*",
     "#middleware/*": "./src/middleware/*"

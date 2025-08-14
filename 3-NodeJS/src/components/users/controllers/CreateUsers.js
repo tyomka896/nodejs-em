@@ -1,4 +1,4 @@
-import { BaseController } from "#classes/BaseController.js";
+import { Controller } from "#components/Controller.js";
 import { CreateUsersSchema } from "#components/users/dto/CreateUsers.js";
 import { CreateUsersService } from "#components/users/services/CreateUsers.js";
 
@@ -8,7 +8,7 @@ curl -X POST http://localhost:3000/users \
      -H "Content-Type: application/json" \
      -d '{"name": "Ivan","surname": "Ivanov","password": "ABC@abc123","email": "ivan.ivanov@example.com"}'
  */
-class CreateUsersController extends BaseController {
+class CreateUsersController extends Controller {
     constructor() {
         super();
 

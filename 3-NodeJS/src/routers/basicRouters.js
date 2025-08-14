@@ -1,5 +1,7 @@
 import { Router } from "express";
 
+import { NotFoundError } from "#errors/index.js";
+
 const router = Router();
 
 /**
@@ -16,6 +18,10 @@ router.get("/", (_, res) => {
  */
 router.post("/", (_, res) => {
     res.send("POST request");
+});
+
+router.put("/", (_, _res) => {
+    throw new NotFoundError();
 });
 
 export default router;
