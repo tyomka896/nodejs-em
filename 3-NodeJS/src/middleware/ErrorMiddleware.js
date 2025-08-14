@@ -7,11 +7,12 @@ export async function ErrorMiddleware(error, _req, res, _next) {
             : undefined;
 
         return res.status(error.statusCode).json({
-            error: error.message,
-            status: error.statusCode,
+            ...error.toObject(),
             stack,
         });
     }
+
+    console.log(error);
 
     res.status(500).json({
         error: "Internal Server Error",

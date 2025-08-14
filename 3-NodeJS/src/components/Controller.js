@@ -1,4 +1,5 @@
 import ajv from "#helpers/ajv.js";
+import { ValidationError } from "#errors/index.js";
 
 export class Controller {
     constructor() {
@@ -56,16 +57,22 @@ export class Controller {
         return {};
     }
 
-    async run(req, res) {
-        const errorsList = this.validate(req);
+    async run(req, res, next) {
+        const validated = this.validate(req);
 
-        if (Object.keys(errorsList).length > 0) {
-            return res.status(400).send(errorsList);
+        if (Object.keys(validated).length > 0) {
+            const { error, messages } = validated;
+
+            throw new ValidationError(messages, error);
         }
 
-        const result = await this.controller(req);
+        try {
+            const result = await this.controller(req);
 
-        res.status(200).send(result);
+            return res.status(200).send(result);
+        } catch (error) {
+            return next(error);
+        }
     }
 }
 

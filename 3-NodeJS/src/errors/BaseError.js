@@ -15,4 +15,11 @@ export class BaseError extends Error {
             stack: this.stack,
         };
     }
+
+    toObject() {
+        return {
+            error: this.message,
+            statusCode: this.statusCode,
+        };
+    }
 }

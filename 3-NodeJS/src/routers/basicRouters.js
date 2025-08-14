@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { NotFoundError, ValidationError } from "#errors/index.js";
+import { NotFoundError } from "#errors/index.js";
 
 const router = Router();
 
