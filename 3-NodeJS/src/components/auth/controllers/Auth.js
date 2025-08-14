@@ -1,12 +1,9 @@
-import Ajv from "ajv";
-import ajvFormats from "ajv-formats";
-
-import { BaseController } from "#classes/BaseController.js";
+import { Controller } from "#components/Controller.js";
 import { AuthSchema } from "#components/auth/dto/Auth.js";
 import { GetUsersService } from "#components/auth/services/GetUsers.js";
 import { GetTokensService } from "#components/auth/services/GetTokens.js";
 
-class AuthController extends BaseController {
+class AuthController extends Controller {
     get bodySchema() {
         return AuthSchema;
     }

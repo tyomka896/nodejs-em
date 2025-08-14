@@ -1,8 +1,8 @@
-import { BaseController } from "#classes/BaseController.js";
+import { Controller } from "#components/Controller.js";
 import { AuthRefreshSchema } from "#components/auth/dto/AuthRefresh.js";
 import { RefreshTokenService } from "#components/auth/services/RefreshToken.js";
 
-class AuthRefreshController extends BaseController {
+class AuthRefreshController extends Controller {
     get bodySchema() {
         return AuthRefreshSchema;
     }

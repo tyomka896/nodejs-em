@@ -1,6 +1,6 @@
 import ajv from "#helpers/ajv.js";
 
-export class BaseController {
+export class Controller {
     constructor() {
         this.ajv = ajv;
         this.controller = this.controller.bind(this);
@@ -69,4 +69,4 @@ export class BaseController {
     }
 }
 
-export default BaseController;
+export default Controller;

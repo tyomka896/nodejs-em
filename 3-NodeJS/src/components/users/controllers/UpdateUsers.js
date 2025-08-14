@@ -1,4 +1,4 @@
-import BaseController from "#classes/BaseController.js";
+import { Controller } from "#components/Controller.js";
 import { UpdateUserService } from "#components/users/services/UpdateUsers.js";
 
 /**
@@ -7,7 +7,7 @@ curl -X PUT http://localhost:3000/users/1 \
      -H "Content-Type: application/json" \
      -d '{"name":"Петр","surname":"Петров"}'
  */
-class UpdateUserController extends BaseController {
+class UpdateUserController extends Controller {
     async controller(req) {
         const id = req.params.id;
 
