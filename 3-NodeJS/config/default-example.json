@@ -1,0 +1,21 @@
+{
+    "APP": {
+        "PORT": 3000,
+        "KEY": "KEY",
+        "TOKEN_SECRET": "TOKEN_SECRET",
+        "REFRESH_SECRET": "REFRESH_SECRET"
+    },
+    "DATABASE": {
+        "HOST": "localhost",
+        "PORT": 5432,
+        "NAME": "postgres",
+        "USER": "postgres",
+        "PASSWORD": "postgres"
+    },
+    "REDIS": {
+        "HOST": "localhost",
+        "PORT": 6379,
+        "PASSWORD": "PASSWORD",
+        "DB": 0
+    }
+}
