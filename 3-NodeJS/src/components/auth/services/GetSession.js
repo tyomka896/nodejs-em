@@ -36,7 +36,7 @@ export async function GetSessionService(token) {
     }
 
     const user = await connection.oneOrNone(
-        "SELECT id,  name, surname, email FROM users WHERE id = $1",
+        "SELECT id,  name, surname, email, role FROM users WHERE id = $1",
         [payload.sub],
     );
 
