@@ -6,21 +6,25 @@ const ROLES = {
     "student": 3,
 };
 
+function validateUserRole(user) {
+    if (!user) {
+        throw new UnauthorizedError();
+    }
+
+    if (!ROLES[user.role]) {
+        throw new ForbiddenError(`Invalid role '${user.role}'`);
+    }
+
+    return user.role;
+}
+
 function checkRole(currentRole) {
     return (req, _res, next) => {
-        if (!req.state?.user) {
-            throw new UnauthorizedError();
-        }
-
-        const { role } = req.state.user;
-
-        if (!ROLES[role]) {
-            throw new ForbiddenError(`Invalid role '${role}'`);
-        }
+        const role = validateUserRole(req.state?.user);
 
         if (ROLES[role] > ROLES[currentRole]) {
             throw new ForbiddenError(
-                `Insufficient permissions, only for users with role: '${currentRole}'`,
+                `Insufficient permissions, only for users with role or above: '${currentRole}'`,
             );
         }
 
@@ -30,4 +34,21 @@ function checkRole(currentRole) {
 
 export const IsStudentMiddleware = checkRole("student");
 export const IsMentorMiddleware = checkRole("mentor");
-export const IsAdminMiddleware = checkRole("admin");
+
+function checkExactRole(currentRole) {
+    return (req, _res, next) => {
+        const role = validateUserRole(req.state?.user);
+
+        if (ROLES[role] !== ROLES[currentRole]) {
+            throw new ForbiddenError(
+                `Insufficient permissions, only for users with role: '${currentRole}'`,
+            );
+        }
+
+        return next();
+    };
+}
+
+export const OnlyStudentMiddleware = checkExactRole("student");
+export const OnlyMentorMiddleware = checkExactRole("mentor");
+export const OnlyAdminMiddleware = checkExactRole("admin");

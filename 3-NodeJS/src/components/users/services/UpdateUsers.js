@@ -1,5 +1,4 @@
 import { connection } from "#libs/database.js";
-import { ValidationError } from "#errors/index.js";
 
 export async function UpdateUserService({ id, name, surname }) {
     const { rowCount } = await connection.result(
