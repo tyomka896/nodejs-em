@@ -1,1 +1,3 @@
-default.json
+*
+!.gitignore
+default-example.json
