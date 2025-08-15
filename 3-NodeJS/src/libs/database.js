@@ -18,9 +18,3 @@ export const sequelize = new Sequelize({
     logging: false,
     timezone: "+00:00",
 });
-
-// connection.connect()
-//     .then((connect) => connect.done())
-//     .catch((error) => {
-//         console.error("DataBase connection Error", error);
-//     });

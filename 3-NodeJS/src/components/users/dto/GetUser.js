@@ -1,4 +1,4 @@
-export const GetUsersSchema = {
+export const GetUserSchema = {
     type: "object",
     required: [],
     properties: {

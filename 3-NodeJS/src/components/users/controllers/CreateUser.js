@@ -1,6 +1,6 @@
 import { Controller } from "#components/Controller.js";
-import { CreateUsersSchema } from "#components/users/dto/CreateUsers.js";
-import { CreateUsersService } from "#components/users/services/CreateUsers.js";
+import { CreateUserSchema } from "#components/users/dto/CreateUser.js";
+import { CreateUserService } from "#components/users/services/CreateUser.js";
 
 /**
  * Example:
@@ -8,7 +8,7 @@ curl -X POST http://localhost:3000/users \
      -H "Content-Type: application/json" \
      -d '{"name": "Ivan","surname": "Ivanov","password": "ABC@abc123","email": "ivan.ivanov@example.com"}'
  */
-class CreateUsersController extends Controller {
+class CreateUserController extends Controller {
     constructor() {
         super();
 
@@ -26,11 +26,11 @@ class CreateUsersController extends Controller {
     }
 
     get bodySchema() {
-        return CreateUsersSchema;
+        return CreateUserSchema;
     }
 
     async controller(req) {
-        const model = await CreateUsersService({
+        const model = await CreateUserService({
             name: req.body.name,
             surname: req.body.surname,
             password: req.body.password,
@@ -46,4 +46,4 @@ class CreateUsersController extends Controller {
     }
 }
 
-export default new CreateUsersController();
+export default new CreateUserController();

@@ -1,6 +1,6 @@
 import { User } from "#models/User.js";
 
-export async function GetUsersService({ page = 1, limit = 50, role }) {
+export async function GetUserService({ page = 1, limit = 50, role }) {
     page = +page;
     limit = +limit;
 

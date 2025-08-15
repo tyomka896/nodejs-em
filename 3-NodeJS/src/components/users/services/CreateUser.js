@@ -2,7 +2,7 @@ import { User } from "#models/User.js";
 import sha256 from "#helpers/sha256.js";
 import { ValidationError } from "#errors/index.js";
 
-export async function CreateUsersService(usersData) {
+export async function CreateUserService(usersData) {
     const { name, surname, password, email } = usersData;
 
     const userExists = await User.findOne({ where: { email } });
