@@ -1,29 +1,24 @@
-import { connection } from "#libs/database.js";
+import { Course } from "#models/Course.js";
 
 export async function UpdateCourseService({ courseId, title, about }) {
-    const updates = [];
-    const params = [courseId];
+    const updateData = {};
 
     if (title) {
-        params.push(title);
-
-        updates.push(`title = $${params.length}`);
+        updateData.title = title;
     }
 
     if (about) {
-        params.push(about);
-
-        updates.push(`about = $${params.length}`);
+        updateData.about = about;
     }
 
-    if (updates.length === 0) {
+    if (Object.keys(updateData).length === 0) {
         return false;
     }
 
-    const { rowCount } = await connection.result(
-        `UPDATE courses SET ${updates.join(", ")} WHERE id = $1`,
-        params,
-    );
+    const [rowCount, models] = await Course.update(updateData, {
+        where: { id: courseId },
+        returning: true,
+    });
 
-    return rowCount >= 1;
+    return rowCount >= 1 ? models[0] : false;
 }

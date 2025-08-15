@@ -1,11 +1,8 @@
-import { connection } from "#libs/database.js";
+import { User } from "#models/User.js";
+import { Course } from "#models/Course.js";
 
 export async function GetStudentCoursesService({ studentId }) {
-    return await connection.manyOrNone(
-        `SELECT courses.*
-        FROM courses
-        JOIN users_courses ON courses.id = users_courses.course_id
-        WHERE users_courses.user_id = $1`,
-        [studentId],
-    );
+    const user = await User.findByPk(studentId, { include: Course });
+
+    return user ? user.Courses : [];
 }

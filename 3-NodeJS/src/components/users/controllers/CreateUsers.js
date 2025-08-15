@@ -30,12 +30,19 @@ class CreateUsersController extends Controller {
     }
 
     async controller(req) {
-        return await CreateUsersService({
+        const model = await CreateUsersService({
             name: req.body.name,
             surname: req.body.surname,
             password: req.body.password,
             email: req.body.email,
         });
+
+        const modelJson = model.toJSON();
+
+        delete modelJson.password;
+        delete modelJson.refresh_token;
+
+        return modelJson;
     }
 }
 

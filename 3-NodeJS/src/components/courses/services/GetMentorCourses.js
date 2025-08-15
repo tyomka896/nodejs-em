@@ -1,8 +1,5 @@
-import { connection } from "#libs/database.js";
+import { Course } from "#models/Course.js";
 
 export async function GetMentorCoursesService({ mentorId }) {
-    return await connection.manyOrNone(
-        "SELECT * FROM courses WHERE creator_id = $1",
-        [mentorId],
-    );
+    return await Course.findAll({ where: { creator_id: mentorId } });
 }

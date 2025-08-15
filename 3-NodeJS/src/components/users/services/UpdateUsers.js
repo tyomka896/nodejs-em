@@ -1,10 +1,10 @@
-import { connection } from "#libs/database.js";
+import { User } from "#models/User.js";
 
 export async function UpdateUserService({ id, name, surname }) {
-    const { rowCount } = await connection.result(
-        "UPDATE users SET name = $1, surname = $2 WHERE id = $3",
-        [name, surname, id],
+    const [affectedCount] = await User.update(
+        { name, surname },
+        { where: { id } },
     );
 
-    return rowCount >= 1;
+    return affectedCount >= 1;
 }
