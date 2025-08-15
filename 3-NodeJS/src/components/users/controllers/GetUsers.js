@@ -17,18 +17,14 @@ class GetUsersController extends Controller {
             name: user.name,
             surname: user.surname,
             email: user.email,
+            role: user.role,
         };
     }
 
     async controller(req) {
-        let { page = 1, limit = 50 } = req.query;
+        const result = await GetUsersService(req.query);
 
-        page = parseInt(page);
-        limit = parseInt(limit);
-
-        const result = await GetUsersService({ page, limit });
-
-        result.users = result.users.map(this.Getters);
+        result.items = result.items.map(this.Getters);
 
         return result;
     }
