@@ -1,6 +1,6 @@
 import { Controller } from "#components/Controller.js";
-import { UpdateUsersSchema } from "#components/users/dto/UpdateUsers.js";
-import { UpdateUserService } from "#components/users/services/UpdateUsers.js";
+import { UpdateUserSchema } from "#components/users/dto/UpdateUser.js";
+import { UpdateUserService } from "#components/users/services/UpdateUser.js";
 
 /**
  * Example:
@@ -10,7 +10,7 @@ curl -X PUT http://localhost:3000/users/1 \
  */
 class UpdateUserController extends Controller {
     get bodySchema() {
-        return UpdateUsersSchema;
+        return UpdateUserSchema;
     }
 
     async controller(req) {

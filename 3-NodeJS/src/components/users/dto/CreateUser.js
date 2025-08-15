@@ -1,6 +1,6 @@
-export const UpdateUsersSchema = {
+export const CreateUserSchema = {
     type: "object",
-    required: ["name", "surname"],
+    required: ["name", "surname", "password", "email"],
     properties: {
         name: {
             type: "string",
@@ -11,6 +11,14 @@ export const UpdateUsersSchema = {
             type: "string",
             minLength: 3,
             maxLength: 100,
+        },
+        email: {
+            type: "string",
+            format: "email",
+        },
+        password: {
+            type: "string",
+            format: "password",
         },
     },
 };
