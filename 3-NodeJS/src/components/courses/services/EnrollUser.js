@@ -1,20 +1,28 @@
-import { connection } from "#libs/database.js";
+import { User } from "#models/User.js";
+import { Course } from "#models/Course.js";
+import { UserCourse } from "#models/UserCourse.js";
 import { ValidationError } from "#errors/index.js";
 
 export async function EnrollUserService({ userId, courseId }) {
-    const user = await connection.oneOrNone(
-        "SELECT role FROM users WHERE id = $1",
-        [userId],
-    );
+    const user = await User.findOne({ where: { id: userId } });
 
     if (!user || user.role !== "student") {
         throw new ValidationError("User must be a student");
     }
 
-    await connection.none(
-        "INSERT INTO users_courses (user_id, course_id) VALUES ($1, $2)",
-        [userId, courseId],
-    );
+    const course = await Course.findOne({ where: { id: courseId } });
 
-    return true;
+    if (!course) {
+        throw new ValidationError(`Course with id #${courseId} not found`);
+    }
+
+    const enrollExists = await UserCourse.findOne({
+        where: { user_id: userId, course_id: courseId },
+    });
+
+    if (enrollExists) {
+        throw new ValidationError("User is already enrolled in this course");
+    }
+
+    return await UserCourse.create({ user_id: userId, course_id: courseId });
 }

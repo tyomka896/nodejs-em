@@ -1,11 +1,9 @@
-import { connection } from "#libs/database.js";
+import { Course } from "#models/Course.js";
+import { UserCourse } from "#models/UserCourse.js";
 import { NotFoundError, ValidationError } from "#errors/index.js";
 
 export async function GetCourseService({ courseId, userId, role }) {
-    const course = await connection.oneOrNone(
-        "SELECT * FROM courses WHERE id = $1",
-        [courseId],
-    );
+    const course = await Course.findOne({ where: { id: courseId } });
 
     if (!course) {
         throw new NotFoundError("Course not found");
@@ -19,10 +17,9 @@ export async function GetCourseService({ courseId, userId, role }) {
         throw new ValidationError("Access denied");
     }
 
-    const enrolled = await connection.oneOrNone(
-        "SELECT 1 FROM users_courses WHERE user_id = $1 AND course_id = $2",
-        [userId, courseId],
-    );
+    const enrolled = await UserCourse.findOne({
+        where: { user_id: userId, course_id: courseId },
+    });
 
     if (enrolled) {
         return course;

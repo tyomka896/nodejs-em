@@ -1,10 +1,7 @@
-import { connection } from "#libs/database.js";
+import { Course } from "#models/Course.js";
 
 export async function DeleteCourseService({ courseId }) {
-    const { rowCount } = await connection.result(
-        "DELETE FROM courses WHERE id = $1",
-        [courseId],
-    );
+    const rowCount = await Course.destroy({ where: { id: courseId } });
 
     return rowCount >= 1;
 }

@@ -1,5 +1,5 @@
-import { connection } from "#libs/database.js";
+import { Course } from "#models/Course.js";
 
 export async function GetAllCoursesService() {
-    return await connection.manyOrNone("SELECT * FROM courses");
+    return await Course.findAll();
 }

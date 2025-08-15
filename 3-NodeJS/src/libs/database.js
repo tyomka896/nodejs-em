@@ -1,4 +1,4 @@
-import pgPromise from "pg-promise";
+import { Sequelize } from "sequelize";
 
 import {
     DATABASE_HOST,
@@ -8,18 +8,19 @@ import {
     DATABASE_USER,
 } from "#config/database.js";
 
-const pg = pgPromise();
-
-export const connection = pg({
+export const sequelize = new Sequelize({
+    dialect: "postgres",
     host: DATABASE_HOST,
-    port: DATABASE_PORT,
+    port: +DATABASE_PORT,
     database: DATABASE_NAME,
-    user: DATABASE_USER,
+    username: DATABASE_USER,
     password: DATABASE_PASSWORD,
+    logging: false,
+    timezone: "+00:00",
 });
 
-connection.connect()
-    .then((connect) => connect.done())
-    .catch((error) => {
-        console.error("DataBase connection Error", error);
-    });
+// connection.connect()
+//     .then((connect) => connect.done())
+//     .catch((error) => {
+//         console.error("DataBase connection Error", error);
+//     });

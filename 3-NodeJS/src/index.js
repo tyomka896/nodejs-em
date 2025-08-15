@@ -1,5 +1,6 @@
 import Express, { json } from "express";
 
+import "#models/index.js";
 import { APP_PORT } from "#config/app.js";
 import { useRouters } from "./routers/index.js";
 import { ErrorMiddleware } from "./middleware/ErrorMiddleware.js";

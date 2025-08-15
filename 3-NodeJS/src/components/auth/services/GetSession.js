@@ -1,7 +1,7 @@
 import JWT from "jsonwebtoken";
 
+import { User } from "#models/User.js";
 import { redis } from "#libs/redis.js";
-import { connection } from "#libs/database.js";
 import { APP_TOKEN_SECRET } from "#config/app.js";
 
 export async function GetSessionService(token) {
@@ -35,10 +35,7 @@ export async function GetSessionService(token) {
         return null;
     }
 
-    const user = await connection.oneOrNone(
-        "SELECT id,  name, surname, email, role FROM users WHERE id = $1",
-        [payload.sub],
-    );
+    const user = await User.findByPk(payload.sub);
 
     if (!user) {
         return null;

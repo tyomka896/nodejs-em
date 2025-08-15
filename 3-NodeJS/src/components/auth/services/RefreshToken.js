@@ -1,7 +1,7 @@
 import JWT from "jsonwebtoken";
 
+import { User } from "#models/User.js";
 import { redis } from "#libs/redis.js";
-import { connection } from "#libs/database.js";
 import { APP_REFRESH_SECRET, APP_TOKEN_SECRET } from "#config/app.js";
 
 export async function RefreshTokenService(refreshToken) {
@@ -13,10 +13,7 @@ export async function RefreshTokenService(refreshToken) {
         return null;
     }
 
-    const user = await connection.oneOrNone(
-        "SELECT id, name, surname, email, refresh_token FROM users WHERE id = $1",
-        [payload.sub],
-    );
+    const user = await User.findByPk(payload.sub);
 
     if (!user || user.refresh_token !== refreshToken) {
         return null;
@@ -34,9 +31,9 @@ export async function RefreshTokenService(refreshToken) {
         { expiresIn: "30d" },
     );
 
-    await connection.none(
-        "UPDATE users SET refresh_token = $1 WHERE id = $2",
-        [newRefreshToken, user.id],
+    await User.update(
+        { refresh_token: newRefreshToken },
+        { where: { id: user.id } },
     );
 
     const userData = {
