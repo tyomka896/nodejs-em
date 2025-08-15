@@ -16,7 +16,7 @@ export async function GetUsersService({ page = 1, limit = 50, role }) {
     }
 
     const users = await connection.any(
-        `SELECT id, name, surname, email, role
+        `SELECT id, name, surname, email, role, created_at, updated_at
         FROM users ${whereClause}
         ORDER BY id LIMIT $1 OFFSET $2`,
         params,
