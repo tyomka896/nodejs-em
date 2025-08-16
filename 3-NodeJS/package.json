@@ -1,11 +1,13 @@
 {
   "name": "3-nodejs-project",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.ts",
   "type": "module",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node src/index.js",
-    "dev": "cross-env NODE_ENV=development nodemon src/index.js"
+    "build": "tsc",
+    "start": "cross-env NODE_ENV=production node dist/index.js",
+    "dev": "cross-env NODE_ENV=development npx tsx src/index.ts",
+    "watch": "cross-env NODE_ENV=development nodemon --watch src --ext ts --exec npx tsx src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -25,8 +27,15 @@
     "sequelize": "^6.37.7"
   },
   "devDependencies": {
+    "@types/config": "^3.3.5",
+    "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^24.3.0",
     "cross-env": "^10.0.0",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.20.4",
+    "typescript": "^5.9.2"
   },
   "imports": {
     "#classes/*": "./src/classes/*",
@@ -36,6 +45,7 @@
     "#helpers/*": "./src/helpers/*",
     "#libs/*": "./src/libs/*",
     "#middleware/*": "./src/middleware/*",
-    "#models/*": "./src/models/*"
+    "#models/*": "./src/models/*",
+    "#types/*": "./src/types/*"
   }
 }
