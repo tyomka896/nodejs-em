@@ -1,11 +1,11 @@
 import { Request } from "express";
 import { JSONSchemaType } from "ajv";
 
-import { Controller } from "#components/Controller.ts";
-import { GetUserData, GetUserSchema } from "#components/users/dto/GetUser.ts";
-import { GetUserService } from "#components/users/services/GetUser.ts";
-import { PagedResponse } from "#types/express.ts";
 import { UserTypes } from "#types/index.ts";
+import { PagedResponse } from "#types/express.ts";
+import { Controller } from "#components/Controller.ts";
+import { GetUserService } from "#components/users/services/GetUser.ts";
+import { GetUserData, GetUserSchema } from "#components/users/dto/GetUser.ts";
 
 /**
  * Example:

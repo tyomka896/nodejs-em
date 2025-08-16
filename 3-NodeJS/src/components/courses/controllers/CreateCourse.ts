@@ -3,11 +3,11 @@ import { JSONSchemaType } from "ajv";
 
 import { CourseTypes } from "#types/index.ts";
 import { Controller } from "#components/Controller.ts";
+import { CreateCourseService } from "#components/courses/services/CreateCourse.ts";
 import {
     CreateCourseData,
     CreateCourseSchema,
 } from "#components/courses/dto/CreateCourse.ts";
-import { CreateCourseService } from "#components/courses/services/CreateCourse.ts";
 
 class CreateCourseController extends Controller<CourseTypes.Model> {
     get bodySchema(): JSONSchemaType<CreateCourseData> {

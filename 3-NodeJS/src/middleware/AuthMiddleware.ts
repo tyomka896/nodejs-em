@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 
+import { UserTypes } from "#types/index.ts";
 import { UnauthorizedError } from "#errors/index.ts";
 import { GetSessionService } from "#components/auth/services/GetSession.ts";
-import { UserTypes } from "#types/index.ts";
 
 export async function AuthMiddleware(
     req: Request,

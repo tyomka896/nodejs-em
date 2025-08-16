@@ -1,5 +1,5 @@
-import { User } from "#models/User.ts";
 import sha256 from "#helpers/sha256.ts";
+import { User } from "#models/User.ts";
 import { AuthService, UserTypes } from "#types/index.ts";
 import { NotFoundError, ValidationError } from "#errors/index.ts";
 

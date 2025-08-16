@@ -1,13 +1,13 @@
 import { Request } from "express";
 import { JSONSchemaType } from "ajv";
 
+import { UserCourseTypes } from "#types/index.ts";
 import { Controller } from "#components/Controller.ts";
+import { EnrollUserService } from "#components/courses/services/EnrollUser.ts";
 import {
     EnrollUserData,
     EnrollUserSchema,
 } from "#components/courses/dto/EnrollUser.ts";
-import { EnrollUserService } from "#components/courses/services/EnrollUser.ts";
-import { UserCourseTypes } from "#types/index.ts";
 
 class EnrollUserController extends Controller<UserCourseTypes.Model> {
     get bodySchema(): JSONSchemaType<EnrollUserData> {

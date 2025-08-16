@@ -2,11 +2,11 @@ import { Request } from "express";
 import { JSONSchemaType } from "ajv";
 
 import { Controller } from "#components/Controller.ts";
+import { UpdateUserService } from "#components/users/services/UpdateUser.ts";
 import {
     UpdateUserData,
     UpdateUserSchema,
 } from "#components/users/dto/UpdateUser.ts";
-import { UpdateUserService } from "#components/users/services/UpdateUser.ts";
 
 /**
  * Example:

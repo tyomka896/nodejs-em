@@ -1,13 +1,13 @@
 import { Request } from "express";
 import { JSONSchemaType } from "ajv";
 
+import { UserTypes } from "#types/index.ts";
 import { Controller } from "#components/Controller.ts";
+import { CreateUserService } from "#components/users/services/CreateUser.ts";
 import {
     CreateUserData,
     CreateUserSchema,
 } from "#components/users/dto/CreateUser.ts";
-import { CreateUserService } from "#components/users/services/CreateUser.ts";
-import { UserTypes } from "#types/index.ts";
 
 /**
  * Example:
@@ -15,7 +15,7 @@ curl -X POST http://localhost:3000/users \
      -H "Content-Type: application/json" \
      -d '{"name": "Ivan","surname": "Ivanov","password": "ABC@abc123","email": "ivan.ivanov@example.com"}'
  */
-class CreateUserController extends Controller<UserTypes.Model> {
+class CreateUserController extends Controller<UserTypes.PublicModel> {
     constructor() {
         super();
 
@@ -36,7 +36,7 @@ class CreateUserController extends Controller<UserTypes.Model> {
         return CreateUserSchema;
     }
 
-    async controller(req: Request): Promise<UserTypes.Model> {
+    async controller(req: Request): Promise<UserTypes.PublicModel> {
         const model = await CreateUserService({
             name: req.body.name,
             surname: req.body.surname,
@@ -44,9 +44,13 @@ class CreateUserController extends Controller<UserTypes.Model> {
             email: req.body.email,
         });
 
-        const { password, refresh_token, ...publicFields } = model;
+        const {
+            password,
+            refresh_token,
+            ...publicFields
+        } = model.toJSON();
 
-        return publicFields as UserTypes.Model;
+        return publicFields as UserTypes.PublicModel;
     }
 }
 

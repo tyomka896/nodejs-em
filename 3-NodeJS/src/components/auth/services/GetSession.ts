@@ -2,8 +2,8 @@ import JWT, { JwtPayload } from "jsonwebtoken";
 
 import { User } from "#models/User.ts";
 import { redis } from "#libs/redis.ts";
-import { APP_TOKEN_SECRET } from "#config/app.ts";
 import { UserTypes } from "#types/index.ts";
+import { APP_TOKEN_SECRET } from "#config/app.ts";
 
 export async function GetSessionService(
     token: string,

@@ -1,7 +1,7 @@
 import { Request } from "express";
 
-import { Controller } from "#components/Controller.ts";
 import { ValidationError } from "#errors/index.ts";
+import { Controller } from "#components/Controller.ts";
 import { DeleteCourseService } from "#components/courses/services/DeleteCourse.ts";
 
 class DeleteCourseController extends Controller<boolean> {

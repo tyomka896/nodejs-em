@@ -1,7 +1,7 @@
 import { DataTypes, Model } from "sequelize";
 
-import { sequelize } from "#libs/database.ts";
 import { UserTypes } from "#types/index.ts";
+import { sequelize } from "#libs/database.ts";
 
 export class User extends Model<UserTypes.Attributes, UserTypes.Create>
     implements UserTypes.Attributes {

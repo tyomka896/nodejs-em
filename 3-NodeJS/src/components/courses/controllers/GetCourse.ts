@@ -1,8 +1,8 @@
 import { Request } from "express";
 
+import { CourseTypes } from "#types/index.ts";
 import { Controller } from "#components/Controller.ts";
 import { GetCourseService } from "#components/courses/services/GetCourse.ts";
-import { CourseTypes } from "#types/index.ts";
 
 class GetCourseController extends Controller<CourseTypes.Model> {
     async controller(req: Request): Promise<CourseTypes.Model> {

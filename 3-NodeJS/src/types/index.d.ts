@@ -8,4 +8,4 @@ export * as UsersService from "./services/users.d.ts";
 
 export * as ErrorTypes from "./errors.d.ts";
 
-export { AuthRequest, PagedResponse } from "./express";
+export { PagedResponse } from "./express";

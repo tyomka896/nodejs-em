@@ -1,11 +1,11 @@
-import Express, { Express as ExpressType, json } from "express";
+import Express, { Application, json } from "express";
 
 import "#models/index.ts";
 import { APP_PORT } from "#config/app.ts";
 import { useRouters } from "./routers/index.ts";
 import { ErrorMiddleware } from "./middleware/ErrorMiddleware.ts";
 
-const app: ExpressType = Express();
+const app: Application = Express();
 
 app.use(json());
 

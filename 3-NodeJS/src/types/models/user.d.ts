@@ -16,7 +16,11 @@ export interface Attributes {
 
 export interface Model extends Attributes {
     courses?: CourseTypes.Model[];
+    toJSON();
 }
+
+export interface PublicModel
+    extends Omit<Model, "password" | "refresh_token"> {}
 
 type CreateOmit =
     | "id"

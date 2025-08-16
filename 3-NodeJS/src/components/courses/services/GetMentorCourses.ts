@@ -6,5 +6,8 @@ export async function GetMentorCoursesService(
 ): Promise<CourseTypes.Model[]> {
     const { mentorId } = args;
 
-    return await Course.findAll({ where: { creator_id: mentorId } });
+    return await Course.findAll({
+        where: { creator_id: mentorId },
+        order: [["id", "asc"]],
+    });
 }

@@ -6,8 +6,10 @@ export async function GetStudentCoursesService(
 ): Promise<CourseTypes.Model[]> {
     const { studentId } = args;
 
-    const user: UserTypes.Model | null = await User
-        .findByPk(studentId, { include: "courses" });
+    const user: UserTypes.Model | null = await User.findByPk(studentId, {
+        include: "courses",
+        order: [["id", "asc"]],
+    });
 
     return user?.courses || [];
 }

@@ -3,12 +3,12 @@ import JWT, { JwtPayload } from "jsonwebtoken";
 import { User } from "#models/User.ts";
 import { redis } from "#libs/redis.ts";
 import { AuthService, UserTypes } from "#types/index.ts";
+import { APP_REFRESH_SECRET, APP_TOKEN_SECRET } from "#config/app.ts";
 import {
     NotFoundError,
     UnauthorizedError,
     ValidationError,
 } from "#errors/index.ts";
-import { APP_REFRESH_SECRET, APP_TOKEN_SECRET } from "#config/app.ts";
 
 export async function RefreshTokenService(
     refreshToken: string,
