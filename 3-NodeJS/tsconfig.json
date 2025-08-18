@@ -19,6 +19,9 @@
       "#config/*": [
         "src/config/*"
       ],
+      "#data/*": [
+        "src/data/*"
+      ],
       "#errors/*": [
         "src/errors/*"
       ],

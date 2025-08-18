@@ -7,5 +7,5 @@ export * as CoursesService from "./services/courses.d.ts";
 export * as UsersService from "./services/users.d.ts";
 
 export * as ErrorTypes from "./errors.d.ts";
-
-export { PagedResponse } from "./express";
+export { PagedResponse } from "./express.d.ts";
+export { AuditData } from "./kafka.d.ts";

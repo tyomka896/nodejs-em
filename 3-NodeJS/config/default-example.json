@@ -17,5 +17,9 @@
         "PORT": 6379,
         "PASSWORD": "PASSWORD",
         "DB": 0
+    },
+    "KAFKA": {
+        "BROKERS": ["localhost:9092"],
+        "CLIENT_ID": "producer-client-id"
     }
 }
