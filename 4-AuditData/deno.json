@@ -1,0 +1,23 @@
+{
+    "tasks": {
+        "dev": "deno run -RNE --watch src/main.ts"
+    },
+    "imports": {
+        "dayjs": "npm:dayjs@^1.11.13",
+        "kafkajs": "npm:kafkajs@^2.2.4",
+        "pg": "npm:pg@^8.16.3",
+        "pg-hstore": "npm:pg-hstore@^2.3.4",
+        "sequelize": "npm:sequelize@^6.37.7",
+
+        "@src/": "./src/"
+    },
+    "compilerOptions": {
+        "types": ["src/types/*"]
+    },
+    "lint": {
+        "include": ["src/"]
+    },
+    "fmt": {
+        "indentWidth": 4
+    }
+}
