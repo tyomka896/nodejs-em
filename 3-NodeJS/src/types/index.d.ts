@@ -6,6 +6,7 @@ export * as AuthService from "./services/auth.d.ts";
 export * as CoursesService from "./services/courses.d.ts";
 export * as UsersService from "./services/users.d.ts";
 
+export { SchemaTuple, ValidationResult } from "./controller.d.ts";
 export * as ErrorTypes from "./errors.d.ts";
 export { PagedResponse } from "./express.d.ts";
 export { AuditData } from "./kafka.d.ts";

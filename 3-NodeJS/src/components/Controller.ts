@@ -3,11 +3,7 @@ import { ErrorObject, FormatDefinition, ValidateFunction } from "ajv";
 
 import ajv from "#helpers/ajv.ts";
 import { ValidationError } from "#errors/index.ts";
-
-type ValidationResult = {
-    error: string;
-    messages: Record<string, string>[];
-} | {};
+import { ValidationResult } from "#types/index.ts";
 
 export class Controller<T> {
     protected ajv: typeof ajv;
