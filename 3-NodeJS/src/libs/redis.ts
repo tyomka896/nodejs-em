@@ -38,3 +38,6 @@ try {
 } catch (error) {
     console.error("Failed to initialize Redis:", error);
 }
+
+process.on("SIGTERM", () => redis.quit());
+process.on("SIGINT", () => redis.quit());

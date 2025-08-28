@@ -18,3 +18,6 @@ export const sequelize = new Sequelize({
     logging: false,
     timezone: "+00:00",
 });
+
+process.on("SIGTERM", () => sequelize.close());
+process.on("SIGINT", () => sequelize.close());

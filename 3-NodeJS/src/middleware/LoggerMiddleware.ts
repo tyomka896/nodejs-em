@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { NextFunction, Request, Response } from "express";
 
-import { sendLog } from "#libs/kafka.ts";
+import { kafkaService } from "#libs/kafka/index.ts";
 import { AuditData } from "#types/index.ts";
 import { getRequestDescription } from "#data/urlInfo.ts";
 
@@ -25,6 +25,6 @@ export async function LoggerMiddleware(
             logInfo.user_role = req.state?.user.role;
         }
 
-        await sendLog(logInfo).catch(() => {});
+        await kafkaService.sendLog(logInfo).catch(() => {});
     });
 }
